@@ -1,18 +1,19 @@
 ﻿#pragma strict
 
 function Start () {
-	GetComponent(Codeblock).sayHi();
+	//GetComponent(Codeblock).sayHi();
 
 }
 
 function Update () {
-	
+
 }
 
-function MakeBlock(){
+function createBlockObj(){
 	//Create block model
 	//<insert code here>
 
-	//New block 
-
+	//New block
+	Debug.Log("Block object created");
+	GetComponent(Codeblock).sayHi();
 }

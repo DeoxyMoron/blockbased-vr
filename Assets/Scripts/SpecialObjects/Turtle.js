@@ -1,20 +1,27 @@
 ﻿#pragma strict
 
 public var start_pos : Vector3;
+public var speed : float = 1;
 
 function Start () {
 
+/*
 	//test script
-	yield glideForward(1, 2);
-	yield turnRight(90,2);
-	yield glideForward(1,2);
-	yield turnLeft(90,2);
+	yield new WaitForSeconds(3);
+	yield glideForward(3,speed);
+	yield turnLeft(90,speed);
+	yield glideForward(3,speed);
+	yield turnLeft(90,speed);
+	yield glideForward(3,speed);
+	yield turnLeft(90,speed);
+	yield glideForward(3,speed);
+	yield turnLeft(90,speed);
 	//moveForward(1);
-	
+	*/
 }
 
 function Update () {
-	
+
 }
 
 function moveForward(scalar : float){
@@ -22,7 +29,7 @@ function moveForward(scalar : float){
 }
 
 function glideForward(distance : float, duration: float){
-	
+
 	//Glides a certain distance forward
 	var start_pos : Vector3 = transform.position;
 	var end_pos : Vector3 = start_pos + transform.forward * distance;
@@ -42,7 +49,7 @@ function turnRight(deg : float, duration : float){
 	var end_ori : Quaternion = Quaternion.Euler(start_ori + new Vector3(0,deg,0));
 
 
-	
+
 	var t : float = 0.0;
 
 	while (t < duration){
@@ -50,10 +57,25 @@ function turnRight(deg : float, duration : float){
 		t += Time.deltaTime;
 		yield;
 	}
-	
-	transform.rotation = end_ori;	
+
+	transform.rotation = end_ori;
 }
 
 function turnLeft(deg: float, duration: float){
 	yield turnRight(-deg, duration);
+}
+
+function routine(){
+	//Routine that goes around the island
+	//yield new WaitForSeconds(3);
+	yield glideForward(3,speed);
+	yield turnLeft(90,speed);
+	yield glideForward(3,speed);
+	yield turnLeft(90,speed);
+	yield glideForward(3,speed);
+	yield turnLeft(90,speed);
+	yield glideForward(3,speed);
+	yield turnLeft(90,speed);
+	//moveForward(1);
+
 }

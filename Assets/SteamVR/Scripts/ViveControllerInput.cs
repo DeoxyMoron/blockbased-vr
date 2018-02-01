@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ViveControllerInput : MonoBehaviour {
 
-
-	//public BlockManager blockmanager;
-
 	// 1
 	private SteamVR_TrackedObject trackedObj;
 	// 2

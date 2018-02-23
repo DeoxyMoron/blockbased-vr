@@ -8,33 +8,31 @@ public class BlockManager : MonoBehaviour {
 	public GameObject motionblock_turnLeft;
 	public GameObject spawnNode;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-
-	// Update is called once per frame
-	void Update () {
-
-	}
-
-	public void foo(){
-		Debug.Log("WOWEE");
-	}
-	public void SpawnMoveForward(int d){
+    /// <summary>Spawns a "Move Forward" motion block at the spawn node.</summary>
+    /// <param name="d"></param>
+	public void SpawnMoveForward(int d) {
 		GameObject clone;
 		clone = Instantiate(motionblock_moveforward, spawnNode.transform.position, spawnNode.transform.rotation) as GameObject;
 		clone.GetComponent<BlockInfo>().opcode = "move_forward";
 		clone.GetComponent<BlockInfo>().setParam(d);
 	}
-	public void SpawnTurnRight(int d){
+
+    /// <summary>
+    /// Spawns a "Turn Right" motion block at the spawn node.
+    /// </summary>
+    /// <param name="d"></param>
+	public void SpawnTurnRight(int d) {
 		GameObject clone;
 		clone = Instantiate(motionblock_turnRight, spawnNode.transform.position, spawnNode.transform.rotation) as GameObject;
 		clone.GetComponent<BlockInfo>().opcode = "turn_right";
 		clone.GetComponent<BlockInfo>().setParam(d);
 	}
 
-	public void SpawnTurnLeft(int d){
+    /// <summary>
+    /// Spawns a "Turn Left" motion block at the spawn node.
+    /// </summary>
+    /// <param name="d"></param>
+	public void SpawnTurnLeft(int d) {
 		GameObject clone;
 		clone = Instantiate(motionblock_turnLeft, spawnNode.transform.position, spawnNode.transform.rotation) as GameObject;
 		clone.GetComponent<BlockInfo>().opcode = "turn_left";

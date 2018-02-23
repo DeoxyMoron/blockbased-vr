@@ -1,0 +1,18 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Buoy1.cs">
+    <Files>
+      <File FileName="Assets/Standard Assets/Environment/Water (Basic)/Scripts/WaterBasic.cs" Line="1" Column="1" />
+      <File FileName="Assets/Standard Assets/Utility/SimpleMouseRotator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Standard Assets/Utility/ForcedReset.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Blocks/BlockInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Blocks/Codeblock_Model.cs" Line="1" Column="1" />
+      <File FileName="Assets/SteamVR/Scripts/SteamVR_Stats.cs" Line="1" Column="1" />
+      <File FileName="Assets/Buoy1.cs" Line="18" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -78,24 +78,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\New Scripts\Blocks\BlockInfo.cs" />
-    <Compile Include="Assets\New Scripts\Blocks\BlockObject.cs" />
-    <Compile Include="Assets\New Scripts\Blocks\Codeblock Class.cs" />
-    <Compile Include="Assets\New Scripts\Blocks\Codeblock.cs" />
-    <Compile Include="Assets\New Scripts\Blocks\Codeblock_Model.cs" />
-    <Compile Include="Assets\New Scripts\Blocks\Motion_Block.cs" />
-    <Compile Include="Assets\New Scripts\DemoControls.cs" />
-    <Compile Include="Assets\New Scripts\MainScriptTest.cs" />
-    <Compile Include="Assets\New Scripts\NewMainScript.cs" />
-    <Compile Include="Assets\Scripts\Blocks\BlockCollision.cs" />
+    <Compile Include="Assets\Scripts\Blocks\BlockInfo.cs" />
     <Compile Include="Assets\Scripts\Blocks\BlockManager.cs" />
-    <Compile Include="Assets\Scripts\Blocks\MotionBlockTest.cs" />
-    <Compile Include="Assets\Scripts\Blocks\MotionBlockTest2.cs" />
-    <Compile Include="Assets\Scripts\Blocks\MotionBlockTest2COPY.cs" />
-    <Compile Include="Assets\Scripts\Blocks\test.cs" />
+    <Compile Include="Assets\Scripts\Blocks\Codeblock_Model.cs" />
+    <Compile Include="Assets\Scripts\DemoControls.cs" />
+    <Compile Include="Assets\Scripts\Keyboard Controller Scripting\DebugControllerInput.cs" />
+    <Compile Include="Assets\Scripts\Keyboard Controller Scripting\DebugControllerMovement.cs" />
     <Compile Include="Assets\Scripts\SpecialObjects\GreenPoleInteraction.cs" />
     <Compile Include="Assets\Scripts\SpecialObjects\RedPoleInteraction.cs" />
-    <Compile Include="Assets\Scripts\SpecialObjects\Turtle.cs" />
     <Compile Include="Assets\Scripts\SpecialObjects\TurtleMovement.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
@@ -214,7 +204,7 @@
     <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\SteamVR\readme.txt" />
-    <None Include="Assets\prototype_textures\readme.txt" />
+    <None Include="Assets\Textures\prototype_textures\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

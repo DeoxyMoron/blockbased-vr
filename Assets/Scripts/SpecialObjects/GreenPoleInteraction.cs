@@ -24,12 +24,11 @@ public class GreenPoleInteraction : MonoBehaviour {
 	{
 	    get { return SteamVR_Controller.Input((int)trackedObj.index); }
 	}
-	void Awake()
-	{
+	void Awake() {
 	    trackedObj = GetComponent<SteamVR_TrackedObject>();
 	}
 
-	void Start(){
+	void Start() {
 		material = GetComponent<MeshRenderer>().material;
 
 		normalColor = material.color;
@@ -42,8 +41,7 @@ public class GreenPoleInteraction : MonoBehaviour {
 		intermediateColor = normalColor;
 	}
 
-	private void SetCollidingObject(Collider col)
-	{
+	private void SetCollidingObject(Collider col) {
 		// 1
 		if (collidingObject || !col.GetComponent<Rigidbody>())
 		{
@@ -53,13 +51,13 @@ public class GreenPoleInteraction : MonoBehaviour {
 		collidingObject = col.gameObject;
 	}
 
-	public void OnTriggerEnter (Collider other){
+	public void OnTriggerEnter (Collider other) {
 		SetCollidingObject(other);
 
-		Debug.Log(other.gameObject.tag);
+		////Debug.Log(other.gameObject.tag);
 
-		/////////Start Script on Controller enter///////
-		if(other.gameObject.tag=="ViveController"){
+		//Start Script on Controller enter
+		if(other.gameObject.tag=="ViveController") {
 
 			//turtle.startClassicRoutine();
 			//Clears action lists in case parameters were changed
@@ -70,13 +68,9 @@ public class GreenPoleInteraction : MonoBehaviour {
 			greenFlag = GameObject.Find("Green Flag Block");
 
 			//Check all block info children of green flag and save list
-			List<string> opcodeList = new List<string>();
-			List<string> paramList = new List<string>();
 
 			BlockInfo[] infoChildren;
 			infoChildren = greenFlag.GetComponentsInChildren<BlockInfo>();
-
-
 
 			foreach (BlockInfo b in infoChildren){
 				turtle.addStep(b.opcode,b.param);
@@ -96,13 +90,11 @@ public class GreenPoleInteraction : MonoBehaviour {
 	}
 
 	// 2
-	public void OnTriggerStay(Collider other)
-	{
+	public void OnTriggerStay(Collider other) {
 		SetCollidingObject(other);
 	}
 
-	public void OnTriggerExit(Collider other)
-	{
+	public void OnTriggerExit(Collider other) {
 			if (!collidingObject)
 			{
 					return;
@@ -115,12 +107,12 @@ public class GreenPoleInteraction : MonoBehaviour {
 			highlightDuration = 0f;
 			intermediateColor = material.color;
 	}
-	// Update is called once per frame
+
 	void Update () {
 		if (highlight) {
 			highlightDuration += Time.deltaTime;
 			material.color = Color.Lerp(normalColor, highlightColor, highlightDuration*4);
-		} else{
+		} else {
 			highlightDuration += Time.deltaTime;
 			material.color = Color.Lerp(intermediateColor, normalColor, highlightDuration*4);
 		}

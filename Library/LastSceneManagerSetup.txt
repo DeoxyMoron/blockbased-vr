@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Dev Scene.unity
+- path: Assets/Dev Scene VR.unity
   isLoaded: 1
   isActive: 1

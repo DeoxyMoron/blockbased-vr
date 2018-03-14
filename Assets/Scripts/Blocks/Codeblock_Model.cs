@@ -94,7 +94,7 @@ public class Codeblock_Model : MonoBehaviour {
 
         // Change highlight to signal when block is in a parentable state
         if (parentable) {
-			material.color = Color.yellow;
+			material.color = Color.red;
 		}
 
 		// Update Highlight

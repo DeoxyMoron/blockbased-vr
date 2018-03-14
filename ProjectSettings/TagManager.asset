@@ -9,6 +9,7 @@ TagManager:
   - ViveController
   - BlockTrigger
   - CodingBoard
+  - BlockSpawn
   layers:
   - Default
   - TransparentFX

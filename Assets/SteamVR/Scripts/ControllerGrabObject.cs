@@ -11,6 +11,7 @@ public class ControllerGrabObject : MonoBehaviour {
 	private GameObject collidingObject;
 	// 2
 	private GameObject objectInHand;
+    private GameObject collidingBlockControl; 
 
 	private SteamVR_Controller.Device Controller
 	{
@@ -25,9 +26,17 @@ public class ControllerGrabObject : MonoBehaviour {
 
 	private void SetCollidingObject(Collider col)
 	{
-    // 1
-    if (collidingObject || !col.GetComponent<Rigidbody>())
+
+    if (col.tag == "BlockSpawn")
     {
+        collidingBlockControl = col.gameObject;
+        collidingObject = null;
+        return;
+    }
+        // 1
+    else if (collidingObject || !col.GetComponent<Rigidbody>())
+    {
+
         return;
     }
     // 2
@@ -38,7 +47,9 @@ public class ControllerGrabObject : MonoBehaviour {
 	public void OnTriggerEnter(Collider other)
 	{
 	    SetCollidingObject(other);
-	}
+        Controller.TriggerHapticPulse(1000);
+        //Debug.Log(collidingObject);
+    }
 
 	// 2
 	public void OnTriggerStay(Collider other)
@@ -49,18 +60,26 @@ public class ControllerGrabObject : MonoBehaviour {
 	// 3
 	public void OnTriggerExit(Collider other)
 	{
-	    if (!collidingObject)
+
+        collidingBlockControl = null;
+
+        if (!collidingObject)
 	    {
 	        return;
 	    }
 
-	    collidingObject = null;
-	}
+
+        collidingObject = null;
+        
+
+    }
 
 	private void GrabObject()
 	{
-	    // 1
-	    objectInHand = collidingObject;
+
+        VibrateController(.05f, 1500);
+        // 1
+        objectInHand = collidingObject;
 	    collidingObject = null;
 	    // 2
 	    var joint = AddFixedJoint();
@@ -73,7 +92,10 @@ public class ControllerGrabObject : MonoBehaviour {
 				objectInHand.GetComponent<Codeblock_Model>().setGrabbed(true);
 			}
 
-	}
+
+        
+
+    }
 
 	// 3
 	private FixedJoint AddFixedJoint()
@@ -101,16 +123,75 @@ public class ControllerGrabObject : MonoBehaviour {
 
 
 	}
-	// Update is called once per frame
-	void Update () {
+
+
+    public void VibrateController(float timer, ushort amount)
+    {
+        StartCoroutine(VibrateControllerContinuous(timer, amount));
+    }
+
+
+    IEnumerator VibrateControllerContinuous(float timer, ushort amount)
+    {
+        float pulse_length = 0.5f;
+        bool saw_tooth_right = true;
+        // if true the pulse will happen in a sawtooth pattern like this /|/|/|/|
+        // else it will happen opposite like this |\|\|\|\
+        while (timer > 0)
+        {
+            if (saw_tooth_right) { Controller.TriggerHapticPulse((ushort)((pulse_length - (timer % pulse_length)) * (float)amount)); }
+            else { Controller.TriggerHapticPulse((ushort)((timer % pulse_length) * (float)amount)); }
+            Controller.TriggerHapticPulse(amount);
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        yield break;
+    }
+
+
+
+    // Update is called once per frame
+    void Update () {
 		// 1
 		if (Controller.GetHairTriggerDown())
 		{
-		    if (collidingObject)
+
+
+
+
+            if (collidingObject)
 		    {
-		        GrabObject();
+                GrabObject();
 		    }
-		}
+
+           if (collidingBlockControl)
+            {
+                
+                if (collidingBlockControl.name== "BlockSpawnMoveForward")
+                {
+                    blockmanager.SpawnMoveForward(1);
+
+                }
+
+                else if (collidingBlockControl.name == "BlockSpawnTurnRight")
+                {
+                    blockmanager.SpawnTurnRight(90);
+                }
+
+                else if (collidingBlockControl.name == "BlockSpawnTurnLeft")
+                {
+                    blockmanager.SpawnTurnLeft(90);
+                }
+                else if (collidingBlockControl.name == "BlockDelete")
+                {
+                    blockmanager.Clear();
+                }
+
+                collidingBlockControl = null;
+            }
+            collidingBlockControl = null;
+
+        }
 
 		// 2
 		if (Controller.GetHairTriggerUp())
@@ -130,7 +211,7 @@ public class ControllerGrabObject : MonoBehaviour {
 
 				}
 				else {
-					blockmanager.SpawnMoveForward(1);
+					//blockmanager.SpawnMoveForward(1);
 				}
 
 			} else if (touchpad.y < -0.6f){
@@ -147,7 +228,7 @@ public class ControllerGrabObject : MonoBehaviour {
 					collidingObject.GetComponent<BlockInfo>().increment();
 				}
 				else {
-					blockmanager.SpawnTurnRight(90);
+					//blockmanager.SpawnTurnRight(90);
 				}
 
 			} else if (touchpad.x<-0.6f){
@@ -156,7 +237,7 @@ public class ControllerGrabObject : MonoBehaviour {
 					collidingObject.GetComponent<BlockInfo>().decrement();
 				}
 				else {
-					blockmanager.SpawnTurnLeft(90);
+					//blockmanager.SpawnTurnLeft(90);
 				}
 
 			}

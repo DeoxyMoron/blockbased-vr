@@ -5,7 +5,7 @@ using UnityEngine;
 public class DemoControls : MonoBehaviour {
 	public TurtleMovement turtle;
 	public GameObject[] blocks;
-	public GameObject greenFlagBlock;
+	private GameObject greenFlagBlock;
 	private Vector3 startPos;
 	private Quaternion startOri;
 

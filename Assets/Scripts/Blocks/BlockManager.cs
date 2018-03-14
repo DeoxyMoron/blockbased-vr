@@ -8,6 +8,9 @@ public class BlockManager : MonoBehaviour {
 	public GameObject motionblock_turnLeft;
 	public GameObject spawnNode;
 
+    private GameObject[] blocks;
+    private GameObject greenFlagBlock;
+
     /// <summary>Spawns a "Move Forward" motion block at the spawn node.</summary>
     /// <param name="d"></param>
 	public void SpawnMoveForward(int d) {
@@ -38,4 +41,29 @@ public class BlockManager : MonoBehaviour {
 		clone.GetComponent<BlockInfo>().opcode = "turn_left";
 		clone.GetComponent<BlockInfo>().setParam(d);
 	}
+
+    public void Clear()
+    {
+           
+        //Clears all blocks
+        blocks = GameObject.FindGameObjectsWithTag("Block");
+
+        greenFlagBlock = GameObject.Find("Green Flag Block");
+
+
+
+        //Debug.Log(blocks);
+
+        foreach (GameObject obj in blocks)
+        {
+            if (obj.name == greenFlagBlock.name)
+            {
+                //Debug.Log("wwwww");
+            }
+            else
+            {
+                Destroy(obj);
+            }
+        }
+    }
 }

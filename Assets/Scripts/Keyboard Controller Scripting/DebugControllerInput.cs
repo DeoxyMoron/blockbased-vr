@@ -10,6 +10,10 @@ public class DebugControllerInput : MonoBehaviour {
     private GameObject collidingObject;
     private GameObject objectInHand;
 
+    private GameObject collidingBlockControl;
+
+
+
     // Use this for initialization
     void Awake () {
 		blockmanager = GetComponent<BlockManager>();
@@ -17,7 +21,16 @@ public class DebugControllerInput : MonoBehaviour {
 
     private void SetCollidingObject(Collider col) {
         // 1
-        if (collidingObject || !col.GetComponent<Rigidbody>()) {
+
+
+        if (col.tag == "BlockSpawn")
+        {
+            collidingBlockControl = col.gameObject;
+            collidingObject = null;
+            return;
+        }
+
+        else if (collidingObject || !col.GetComponent<Rigidbody>()) {
             return;
         }
         // 2
@@ -34,6 +47,9 @@ public class DebugControllerInput : MonoBehaviour {
 
     // 3
     public void OnTriggerExit(Collider other) {
+
+        collidingBlockControl = null;
+
         if (!collidingObject) {
             return;
         }
@@ -91,6 +107,33 @@ public class DebugControllerInput : MonoBehaviour {
             if (collidingObject) {
                 GrabObject();
             }
+
+            if (collidingBlockControl) {
+
+                if (collidingBlockControl.name == "BlockSpawnMoveForward")
+                {
+                    blockmanager.SpawnMoveForward(1);
+
+                }
+
+                else if (collidingBlockControl.name == "BlockSpawnTurnRight")
+                {
+                    blockmanager.SpawnTurnRight(90);
+                }
+
+                else if (collidingBlockControl.name == "BlockSpawnTurnLeft")
+                {
+                    blockmanager.SpawnTurnLeft(90);
+                }
+                else if (collidingBlockControl.name == "BlockDelete")
+                {
+                    blockmanager.Clear();
+                }
+
+                collidingBlockControl = null;
+            }
+            collidingBlockControl = null;
+
         }
 
         if (Input.GetKeyUp("space")) {
